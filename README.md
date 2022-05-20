@@ -1,0 +1,2 @@
+# School-Assignment
+Home Page shows a Pie chart with % of students passed in that grade for specified year. Each section is clickable and takes user to next page where selected Grade's students details is shown in the grid(Both passed and failed). User can click on Edit button to make that row editable and once done editing, Done button can be clicked to save data for that session. Back button is given to navigate back to pie chart to see updated details (if changed marks).
