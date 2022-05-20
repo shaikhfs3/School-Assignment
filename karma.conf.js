@@ -5,6 +5,13 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    files: [
+      'src/app/**/*.ts',
+      'src/spec/**/*.specs.ts'
+    ],
+    preprocessors: {
+      '**/src/app/*.ts': ['coverage']
+    },
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
