@@ -1,8 +1,8 @@
-<button  type="button" class="btn btn-secondary" (click)="back()">Back</button>
+<button  type="button" class="btn btn-secondary" (click)="back()" id="back-btn">Back</button>
 <div class="container">
 <div class="row">
-<p class="col-md-6 font-weight-bold">{{tableLabel}} Students</p>
-<p class="col-md-6 font-weight-bold">Marks Out of 100</p>
+<p class="col-md-6 font-weight-bold" id="page-label">{{tableLabel}} Students</p>
+<p class="col-md-6 font-weight-bold" id="out-of-marks">Marks Out of 100</p>
 </div>
 </div>
 
@@ -13,8 +13,8 @@
         </th>
         <td mat-cell *matCellDef="let element">
           <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
-            <div class="btn-edit" *ngSwitchCase="'isEdit'">
-              <button mat-button (click)="element.isEdit = !element.isEdit">
+            <div *ngSwitchCase="'isEdit'">
+              <button id="edit-btn" class="btn btn-primary" (click)="onEditClick(element)">
                 Edit
               </button>
             </div>
@@ -23,13 +23,21 @@
             </span>
           </div>
           <div [ngSwitch]="col.type" *ngIf="element.isEdit">
-            <div class="btn-edit" *ngSwitchCase="'isEdit'">
+            <div *ngSwitchCase="'isEdit'">
                 <button
-                  mat-button
+                id="done-btn"
+                class="btn btn-success"               
                   (click)="editRow(element)"
                   [disabled]="disableSubmit(element.id)"
                 >
                   Done
+                </button>
+                <button
+                id="cancel-btn"
+                class="btn btn-secondary"               
+                  (click)="cancel(element)"
+                >
+                  Cancel
                 </button>
               </div>
             <mat-form-field class="form-input" *ngSwitchDefault>

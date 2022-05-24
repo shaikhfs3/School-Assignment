@@ -3,12 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { IResponse } from '../types/types';
 import { Observable } from 'rxjs';
 
-interface ISections{
-Grade:IGradeData[];
-}
-interface IGradeData{
-
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +10,7 @@ export class SectionsService {
   apiURL: string = 'http://localhost:8000/';
   constructor(private httpClient: HttpClient) { }
 
-  public getSectionsData(url?: string) {
+  public getSectionsData() {
     return this.httpClient.get<IResponse[]>(`${this.apiURL}students`);
   }
 

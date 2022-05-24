@@ -25,6 +25,7 @@ export class SectionDetailsComponent implements OnInit {
   tableLabel = "";
   tableData = [];
   valid: any = {};
+  previousRow = {};
   constructor(
     private sectionsService: SectionsService,
     private router: Router,
@@ -56,7 +57,22 @@ export class SectionDetailsComponent implements OnInit {
 
   editRow(row: IResponse) {
     row.isEdit = false;
+    Object.entries(row).map(([key,value])=>{
+      if(['st_age','maths','english','science','social_science'].includes(key))
+      row[key]=parseInt(value);
+    });
+    
     this.sectionsService.updateStudentDetails(row, this.label).subscribe(() => (row.isEdit = false));
+  }
+
+  onEditClick(row:IResponse){
+    Object.assign(this.previousRow,row);
+    row.isEdit = !row.isEdit;
+  }
+
+  cancel(row: IResponse){
+    Object.assign(row,this.previousRow);
+    row.isEdit = false;
   }
 
   inputHandler(e: any, id: number, key: string) {

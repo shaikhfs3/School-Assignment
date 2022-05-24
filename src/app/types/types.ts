@@ -31,40 +31,44 @@ export const COLUMNS_SCHEMA = [
   {
     key: 'st_name',
     type: 'text',
-    label: 'Student Name'
+    label: 'Student Name',
+    required: true
   },
   {
     key: 'st_age',
     type: 'number',
-    label: 'Age'
+    label: 'Age',
+    required: true
   },
   {
     key: 'st_email',
     type: 'email',
     label: 'Email',
-    required: true,
-    pattern: '.+@.+',
+    required: true
   },
   {
     key: 'english',
     type: 'number',
     label: 'English',
-    pattern:'^([0-9]|[1-9][0-9]|100)$'
+    required: true
   },
   {
     key: 'maths',
     type: 'number',
     label: 'Maths',
+    required: true
   },
   {
     key: 'science',
     type: 'number',
     label: 'Science',
+    required: true
   },
   {
     key: 'social_science',
     type: 'number',
     label: 'Social Science',
+    required: true
   },
   {
     key: 'isEdit',
