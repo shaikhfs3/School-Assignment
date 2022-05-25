@@ -18,10 +18,10 @@ describe('Section Details Page', () => {
     });
 
     it('Should make row editable', () => {
-        cy.get('#edit-btn').click();
+      cy.get('tbody > :nth-child(1) > .cdk-column-english').dblclick();
         cy.get('#mat-input-1').should('be.visible');
         cy.get('#mat-input-1').clear().type('17');
         cy.get('.btn-success').click();
-        cy.get('#edit-btn').should('be.visible');
+        cy.get('#done-btn').should('not.exist');
     });
 });

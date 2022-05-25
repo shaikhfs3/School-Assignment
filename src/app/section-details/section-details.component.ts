@@ -28,8 +28,7 @@ export class SectionDetailsComponent implements OnInit {
   previousRow = {};
   constructor(
     private sectionsService: SectionsService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
   }
 

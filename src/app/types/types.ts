@@ -38,7 +38,8 @@ export const COLUMNS_SCHEMA = [
     key: 'st_age',
     type: 'number',
     label: 'Age',
-    required: true
+    required: true,
+    pattern:"(^100$)|^[1-9]\d?$"
   },
   {
     key: 'st_email',

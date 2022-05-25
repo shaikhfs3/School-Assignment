@@ -1,58 +1,42 @@
-<button  type="button" class="btn btn-secondary" (click)="back()" id="back-btn">Back</button>
+<button type="button" class="btn btn-secondary" (click)="back()" id="back-btn">Back</button>
 <div class="container">
-<div class="row">
-<p class="col-md-6 font-weight-bold" id="page-label">{{tableLabel}} Students</p>
-<p class="col-md-6 font-weight-bold" id="out-of-marks">Marks Out of 100</p>
-</div>
+  <div class="row">
+    <p class="col-md-6 font-weight-bold" id="page-label">{{tableLabel}} Students</p>
+    <p class="col-md-6 font-weight-bold" id="out-of-marks">Marks Out of 100</p>
+  </div>
 </div>
 
-<table mat-table [dataSource]="myDataArray" class="mat-elevation-z8" >
-    <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ col.label }}
-        </th>
-        <td mat-cell *matCellDef="let element">
-          <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
-            <div *ngSwitchCase="'isEdit'">
-              <button id="edit-btn" class="btn btn-primary" (click)="onEditClick(element)">
-                Edit
-              </button>
-            </div>
-            <span *ngSwitchDefault>
-              {{ element[col.key] }}
-            </span>
-          </div>
-          <div [ngSwitch]="col.type" *ngIf="element.isEdit">
-            <div *ngSwitchCase="'isEdit'">
-                <button
-                id="done-btn"
-                class="btn btn-success"               
-                  (click)="editRow(element)"
-                  [disabled]="disableSubmit(element.id)"
-                >
-                  Done
-                </button>
-                <button
-                id="cancel-btn"
-                class="btn btn-secondary"               
-                  (click)="cancel(element)"
-                >
-                  Cancel
-                </button>
-              </div>
-            <mat-form-field class="form-input" *ngSwitchDefault>
-              <input 
-              matInput
-              [required]="col.required"
-              [pattern]="col.pattern"
-              [type]="col.type"
-              [(ngModel)]="element[col.key]"
-              (change)="inputHandler($event, element.id, col.key)"
-              />
-            </mat-form-field>
-          </div>
-        </td>
-      </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<table mat-table [dataSource]="myDataArray" class="mat-elevation-z8">
+  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ col.label }}
+    </th>
+    <td mat-cell *matCellDef="let element" (dblclick)="onEditClick(element)">
+      <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+        <span *ngSwitchCase="'isEdit'">
+        </span>
+        <span *ngSwitchDefault>
+          {{ element[col.key] }}
+        </span>
+      </div>
+     
+      <div [ngSwitch]="col.type" *ngIf="element.isEdit">
+        <div *ngSwitchCase="'isEdit'">
+          <button id="done-btn" class="btn btn-success" (click)="editRow(element)"
+            [disabled]="disableSubmit(element.id)">
+            Done
+          </button>
+          <button id="cancel-btn" class="btn btn-secondary" (click)="cancel(element)">
+            Cancel
+          </button>
+        </div>
+        <mat-form-field class="form-input" *ngSwitchDefault>
+          <input matInput [required]="col.required" [pattern]="col.pattern" [type]="col.type"
+            [(ngModel)]="element[col.key]" (change)="inputHandler($event, element.id, col.key)" />
+        </mat-form-field>
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

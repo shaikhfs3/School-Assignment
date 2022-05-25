@@ -1,7 +1,7 @@
 
 describe('School Assignment', () => {
   it('Should load the title', () => {
-    cy.visit('/');
+    cy.visit('/',{timeout:3000});
     cy.get('h1').should('have.text', '% of students passed in 2018-2019 session');
   })
   it('Should load the pie chart', () => {
